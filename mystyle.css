@@ -218,3 +218,9 @@ img.img_team {
 	line-height:30px;
 }
 
+.center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+  }
