@@ -1,6 +1,9 @@
 body {
-	background-color:#8AE65C
+
+	background-image: linear-gradient(-90deg, #61e26a, #17ca48); 
+	/* background-color:#8AE65C */
 }
+
 img.small_img {
 	margin-top: 5px;
 	margin-bottom: 5px;
