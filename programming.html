@@ -87,9 +87,8 @@
     <h1>General Programming Strategy</h1>
 	<br>
 		<ul>
-			<li>We use math blocks, variables, arrays, logic,
-			compare blocks, loops, switches, and MyBlocks with
-			data hubs (so we can reuse code and change 
+			<li>We use various functions with data hubs to run our programs 
+				(so we can reuse code and change 
 			parameters, as required)</li>
 			
 			<li>We have created a selection program
@@ -100,36 +99,34 @@
 			the user to select programs with ease</li>
 			
 			<li>By using gear lash removal before each 
-			movement, the ramp up feature when starting
-			from stationary position, our own 
+			movement, the acceleration and deceleration movements when starting
+			and stopping a movement, our own 
 			error-corrected move block, and Proportional Integral Derivative
-			line following we are able to achieve more consistent and repeatable
+			line following, we are able to achieve more consistent and repeatable
 			robot movement</li>
 			
-			<li>We regularly use subroutines (i.e. MyBlocks)
+			<li>We regularly use functions, also known as subroutines, which allows us
 			to reuse code whenever possible and to keep
-			our program sizes manageable. See diagram of our 
-			programming hierarchy which illustrates the extent to which 
-			we re-use programming code to be as efficient as possible. 
+			our program sizes manageable.
 			</li>
 			
 			<li>We annotate our work to help us
 			debug programs and to better understand
-			each programming block's purpose</li>
+			the purpose of each line of code</li>
 			
 			<li>We make frequent use of our square up 
-			subroutine which allows the robot to position 
+			function which allows the robot to position 
 			itself perpendicularly to any line (from
 			virtually any angle of attack)</li>
 			
-			<li>Our MyBlocks and variables are given 
+			<li>Our functions and parameters are given 
 			descriptive and meaningful names to allow 
 			us to easily understand what our programs 
 			are doing</li>
 			
 			<li>Within all of our major movement
-			MyBlocks (such as error-corrected move block and PID line following block),
-			we have a MyBlock inside that is constantly 
+			functions (such as our error-corrected move block and PID line following block),
+			we have a function inside that is constantly 
 			checking if a certain exit condition is met.
 			When that exit condition is met, the program
 			immediately exits that loop causing the robot to 
@@ -137,7 +134,7 @@
 			the robot when one of the light sensors a black
 			line.</li>
 			
-			<li>Our "Check-Abort" MyBlock constantly checks 
+			<li>Our "Check-Abort" function constantly checks 
 			whether the EV3 up arrow button is pressed.   
 			The robot operator can interrupt missions at any time and
 			still stay within the overall selection program 
@@ -145,7 +142,7 @@
 			the next program or mission.</li>
 			
 			<li>When accelerating from a stationary position,
-			our robot uses a Ctrl-Z-designed ramp up feature 
+			our robot uses Ctrl-Z-designed acceleration and deceleration feature s
 			to minimize the likelihood of wheel slip. 
 			This provides for greater repeatability of 
 			the robot’s movements.</li>
@@ -159,7 +156,7 @@
 			100 is white.</li>
 		
 		</ul>
-
+<!--
 		<br>
 		<h1>Program Hierarchy</h1>
 		<br>
@@ -170,34 +167,22 @@
 		programming code and enjoy the benefits of an efficient mission selection program. 
 		This diagram below illustrates the great extent to which Ctrl-Z re-uses programming code.</p>
 		<img src="images/robot/hierarchyWorlds.PNG"></img>
-
+		-->
 		<br>
 		<br>
-		<h1>MyBlock Examples</h1>
+		<h1>Function Examples</h1>
 		<br>
-		<h3>ScaleLight</h3>
+		<h3>Gyro Turn</h3>
 		 
-		 <p>This ScaleLight MyBlock allows us to read the
-		 values that a selected light sensor currently
-		 sees and either output them directly or use a
-		 formula to convert them to a reading in a range from
-		0, being black, to 100, being white, (based on our
-		values for white and black collected in calibration)
-		and then output them.
-		The equation we created to scale our light readings uses 
-		variables for the minimum and maximum raw light readings collected 
-		in calibration. Inputting the minimum raw light 
-		reading (black) outputs a value of 0, and the maximum raw
-		light reading (white) outputs a value of 100. With 
-		these two pairs of coordinates, we identified a linear function.
-		When you input the current light value, the linear function will scale it
-		to some point in the range and output a usable calibrated
-		value from 0 to 100.</p>
-		
-		<p>Returned light reading by the block = 100*
-		(current light value – min) / (max – min)</p>
+		 <p>The Gyro Turn function uses the gyro sesnsor to help increase the accuracy of turns. It compares
+			the current angle with the target angle, and turns until the target angle is reached. We start by turning at
+			a very high power, causing the gyro sensor to overcorrect. We then make it turn back at a slower power until it
+			reaches the target angle. This method allows for very accurate turns. However, since we use a very high power, it will cause
+			the robot to overcorrect a large amount, so we programmed the sensor to look for a value less than the target angle, requiring
+			less correction, as it will stop closer to its target value.
+		</p>
 		<br>
-		<img src="images/robot/scalelight.jpg"></img>
+		<img src="images/robot/gyroturn.JPG"></img>
 		<br>
 		<br>
 		<h3>Proportional Integral Derivative Line Following</h3>
@@ -213,7 +198,7 @@
 		the current error and last error). Those values are 
 		scaled to an appropriate value for use in motor power levels
 		based on three user-inputted coefficients in
-		InitMain, Kp, Ki, and Kd.</p>
+		our constants.py module: kp, ki, and kd.</p>
 		<br>
 		<img src="images/robot/pid.jpg"></img>
 		<br>
@@ -223,7 +208,7 @@
 		<p>This selection program allows us to quickly and 
 		efficiently switch programs/missions 
 		during the two-and-a-half minute match. 
-		Our selection program contains MyBlocks, each containing one of our missions.
+		Our selection program contains functions, each containing one of our missions.
 		The user of the robot simply starts the selection 
 		program and clicks the centre button to start the first
 		mission. Then, when the mission finishes, the robot 
@@ -234,7 +219,7 @@
 		accommodates that by allowing the user to navigate 
 		with the left and right arrow buttons.</p>
 		<br>
-		<img src="images/robot/main.png"></img>
+		<img src="images/robot/main.jpg"></img>
 		<br>
 		<br>
 		<h3>Error-Corrected Move Block</h3>
@@ -243,28 +228,24 @@
 		our program continuously measures the distances 
 		travelled by each drive motor and constantly adjusts their 
 		speeds to maintain the predetermined ratio of the 
-		distance to be travelled by each drive motor. This MyBlock also allows for
+		distance to be travelled by each drive motor. This functions also allows for
 		more accurate robot arc turns, acceleration at the beginning of the movement and
 		deceleration at the end.
-		
 		</p>
 		
 		<img src="images/robot/zmove.jpg"></img>
 		<br>
-		<h3>Check Abort</h3>
 		<br>
-		<p>We have created a MyBlock subroutine called 
-		Check-Abort that constantly checks whether the up
-		arrow button is pressed. If so, Check-Abort exits the loop
-		in the MyBlock it is contained in. Our programs are made almost
-		exclusively out of MyBlocks, including error-correction, wait blocks, pivot-turns, PID, etc.
-		Therefore, in the rare circumstance that we must
-		stop our robot, we can do so at any time and still
-		stay within our overall selection program,
-		rather than fiddle with the EV3 buttons in selecting
-		the next mission.</p>
+		<h3>Square Up</h3>
 		<br>
-		<img src="images/robot/checkabort.jpg"></img>
+		<p>We have created a function that makes the robot completely perpendicular to the edge of a black line.
+		Each light sensor corresponds with a motor. The robot drives up to the line and has the light sensor check the
+		reflected light values. If the light sensor sees a value of less than 50 (black), it will tell the motor to move
+		towards a value greater than 50 (white). It does this for both motors while for a set amount of time while slowly decreasing in power,
+		until the robot becomes completely perpendicular to the edge of the line.
+		</p>
+		<br>
+		<img src="images/robot/squareup.jpg"></img>
 		<br>
 		<br>
 		<br>
