@@ -86,6 +86,42 @@ img.ultra_wide {
 	height:189px;
 }
 
+img.smallsquare {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+	width:280px;
+	height:280px;
+}
+
+img.medsquare {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+	width:450px;
+	height:450px;
+}
+
+img.bigsquare {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+	width:650px;
+	height:650px;
+}
+
+img.xlsquare {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-right: 5px;
+	margin-left: 5px;
+	width:845px;
+	height:845px;
+}
+
 img.portrait {
 	width:57px;
 	height:85px;
