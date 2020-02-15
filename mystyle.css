@@ -141,6 +141,10 @@ img.squareportrait {
 	width:85px;
 	height:85px;
 }
+img.semiportrait {
+	width:65px;
+	height:85px;
+}
 
 img.wideportrait {
 	width:110px;
